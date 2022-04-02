@@ -5,9 +5,73 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background:  #f6f7f9;;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.product-image-box img {
+  height: 270px;
+  object-fit: contain;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #f68b1e;
+  border: 1px solid #f68b1e;
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qty-btn svg {
+  width: 20px;
+  height: 20px;
+  background: #f68b1e;
+  font-weight: 100;
+}
+
+.card-body {
+  background: #fff !important;
+}
+
+.card {
+  box-shadow: 0 1em 1em rgba(0,0,0,0.1);;
+}
+
+.base-trash svg{
+  width: 20px;
+  height: 20px;
+  color: #f68b1e;
+}
+
+.base-trash span {
+  color: #f68b1e;
+}
+
+.cart-link {
+  position: relative;
+  font-size: 20px;
+}
+
+.cart-link .item-count {
+  position: absolute;
+  background: #f68b1e;
+  color: #fff;
+  padding: 3px 5px;
+  border-radius: 50%;
+  top: -4px;
+  left: 14px;
+  font-size: 12px;
 }

@@ -1,0 +1,28 @@
+.auth-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient( 115deg, #000000c7, #000000c9 ), url(../../images/shop.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.auth-box {
+    width: 38%;
+    padding: 50px 20px 20px 20px;
+    background: rgba(28, 28, 78, 0.8);
+    border-radius: 15px;
+}
+
+.auth-box .heading a {
+    color: #fff;
+    font-size: 28px;
+}
+
+@media (max-width: 428px) {
+    .auth-box {
+        width: 90%;
+    }
+}
