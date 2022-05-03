@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 import Cart from "./screens/Cart/Cart";
 import Home from "./screens/Index";
 import Login from "./screens/Login/LogIn";
+import Null from "./screens/Null/Null";
 import Product from "./screens/Product/Product";
 import SignUp from "./screens/SignUp/SignUp";
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <Route path="/sign-up" element={<SignUp/>}/>
     <Route path="/product/:id" element={<Product/>}/>
     <Route path="/cart" element={<Cart/>}/>
+    <Route path="*" element={<Null/>}/>
   </Routes>
   );
 }

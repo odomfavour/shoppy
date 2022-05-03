@@ -1,11 +1,10 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { Navbar, NavDropdown, Container, Nav } from 'react-bootstrap'
 import { BsFillCartFill } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
-import { CartContext } from '../../context/cart-context'
-
+import { useGlobalContext } from '../../context/context'
 const Header = () => {
-    const {itemCount} = useContext(CartContext);
+    const { cart } = useGlobalContext()
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -18,13 +17,12 @@ const Header = () => {
                             <NavLink to="/login" className="dropdown-item">
                                 Login
                             </NavLink>
-                           <NavDropdown.Divider />
+                            <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                         </NavDropdown>
-                        <NavLink to="" className="cart-link">
+                        <NavLink to="/cart" className="cart-link">
                             <BsFillCartFill className='mt-1' />
-                            {itemCount > 0 ? <span className='item-count'>{itemCount}</span>: null}
-                            
+                            <span className='item-count'>{cart.length}</span>
                         </NavLink>
                     </Nav>
                 </Navbar.Collapse>

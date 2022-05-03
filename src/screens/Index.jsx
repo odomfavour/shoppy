@@ -3,9 +3,11 @@ import axios from '../api/axios'
 import '../index.css'
 import { BsStarFill } from "react-icons/bs";
 import { Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
 import Header from '../components/Header/Header';
+
+import { useGlobalContext } from '../context/context';
 // const getStar = (starCount) => {
 //     console.log(starCount)
 //     for(let fi=1; 1 <= starCount; i++) {
@@ -18,18 +20,9 @@ const Index = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [categories, setCategories] = useState(null)
     const [category, setCategory] = useState("")
+    const { cart, addProduct } = useGlobalContext()
 
-    const [star, setStar] = useState(0)
-    const getStar = (star) => {
-        console.log(Math.round(star))
-        let arr = []
-        for (let index = 0; index < Math.round(star); index++) {
-            arr.push(index)
-
-        }
-        console.log(arr.length)
-        setStar(arr.length)
-    }
+  
     const getCategory = async (category) => {
         console.log(category)
         try {
@@ -37,6 +30,7 @@ const Index = () => {
             const { data } = await axios.get(`/products/category/${category}`)
             console.log(data)
             setProducts(data)
+            setCategory()
             setIsLoading(false)
         } catch (error) {
             console.log(error)
@@ -93,7 +87,7 @@ const Index = () => {
                         <div className="row">
                             {products.map((product) => (
                                 <div className="col-md-3 mb-3" key={product.id}>
-                                    <Link to={{ pathname: `/product/${product.id}`, state: { products: product } }}>
+                                    {/* <Link to={{ pathname: `/product/${product.id}`, state: { products: product } }}> */}
                                         <div className="card h-100">
                                             <div className="card-body">
                                                 <h6>{product.category}</h6>
@@ -107,11 +101,12 @@ const Index = () => {
                                                     {product.rating.rate}
                                                 </div>
                                                 <div className="text-center">
-                                                    <button className="btn btn-outline-primary">Add to cart</button>
+                                                    {cart.some(e => e.id === product.id) ? <button className='btn btn-outline-primary' disabled>Already in cart</button> : <button className="btn btn-outline-primary" onClick={() => addProduct(product.id)}>Add to cart</button> }
+                                                    
                                                 </div>
                                             </div>
                                         </div>
-                                    </Link>
+                                    {/* </Link> */}
                                 </div>
                             ))}
                         </div>}

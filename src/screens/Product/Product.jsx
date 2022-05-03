@@ -10,6 +10,19 @@ const Product = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
+    const [cartItems, setCartItems] = useState([]);
+    const showProd = () => {
+        alert(product.title)
+    }
+
+    const onAddToCart = (product) => {
+        const existingProduct = cartItems.find(item => item.id === product.id);
+        if (existingProduct) {
+            setCartItems(cartItems.map(item => (item.id === product.id ? { ...existingProduct, quantity: existingProduct.quantity + 1 } : item)))
+        }else {
+            setCartItems([...cartItems, { ...product, quantity: 1 }])
+        }
+    }
 
     useEffect(() => {
         const getProduct = async () => {
@@ -30,7 +43,7 @@ const Product = () => {
     }, [id])
     return (
         <section>
-            <Header />
+            <Header onAdd={onAddToCart}/>
             <div className="container">
                 <div className="mt-5">
                     {isLoading ? <Loader /> : <div className="row">
@@ -49,7 +62,7 @@ const Product = () => {
                             <p>Rating: <span>{product.rating.rate}</span></p>
                             <hr />
                             <div>
-                                <button className="btn btn-success">Buy now</button>
+                                <button className="btn btn-success" onClick={onAddToCart}>Buy now</button>
                             </div>
                         </div>
                     </div>}
