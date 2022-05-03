@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from '../../api/axios'
 // import headset from '../../images/headset.jpg'
 import './Product.css'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Loader from '../../components/Loader/Loader'
 import Header from '../../components/Header/Header'
 
@@ -11,9 +11,9 @@ const Product = () => {
     const [product, setProduct] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
     const [cartItems, setCartItems] = useState([]);
-    const showProd = () => {
-        alert(product.title)
-    }
+    // const showProd = () => {
+    //     alert(product.title)
+    // }
 
     const onAddToCart = (product) => {
         const existingProduct = cartItems.find(item => item.id === product.id);
