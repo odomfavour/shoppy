@@ -3,23 +3,18 @@ import axios from '../api/axios'
 import '../index.css'
 import { BsStarFill } from "react-icons/bs";
 import { Form } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
 import Header from '../components/Header/Header';
 
 import { useGlobalContext } from '../context/context';
-// const getStar = (starCount) => {
-//     console.log(starCount)
-//     for(let fi=1; 1 <= starCount; i++) {
-//         console.log(1)
-//     }
-// }
 
 const Index = () => {
     const [products, setProducts] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [categories, setCategories] = useState(null)
     const [category, setCategory] = useState("")
+    
     const { cart, addProduct } = useGlobalContext()
 
   
@@ -91,6 +86,7 @@ const Index = () => {
                                         <div className="card h-100">
                                             <div className="card-body">
                                                 <h6>{product.category}</h6>
+                                                <Link to={{ pathname: `/product/${product.id}`, state: { products: product } }}>
                                                 <div className="product-image-box text-center p-3">
                                                     <img src={product.image} alt={product.title} className="img-fluid" />
                                                 </div>
@@ -100,6 +96,7 @@ const Index = () => {
                                                     <BsStarFill />
                                                     {product.rating.rate}
                                                 </div>
+                                                </Link>
                                                 <div className="text-center">
                                                     {cart.some(e => e.id === product.id) ? <button className='btn btn-outline-primary' disabled>Already in cart</button> : <button className="btn btn-outline-primary" onClick={() => addProduct(product.id)}>Add to cart</button> }
                                                     

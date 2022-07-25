@@ -5,12 +5,16 @@ import './Product.css'
 import { useParams } from 'react-router-dom'
 import Loader from '../../components/Loader/Loader'
 import Header from '../../components/Header/Header'
+import { useGlobalContext } from '../../context/context';
+
+
 
 const Product = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
     const [cartItems, setCartItems] = useState([]);
+    const { cart, addProduct } = useGlobalContext();
     // const showProd = () => {
     //     alert(product.title)
     // }
@@ -62,7 +66,8 @@ const Product = () => {
                             <p>Rating: <span>{product.rating.rate}</span></p>
                             <hr />
                             <div>
-                                <button className="btn btn-success" onClick={onAddToCart}>Buy now</button>
+                            {cart.some(e => e.id === product.id) ? <button className='btn btn-outline-primary' disabled>Already in cart</button> : <button className="btn btn-outline-primary" onClick={() => addProduct(product.id)}>Add to cart</button> }
+                                                    
                             </div>
                         </div>
                     </div>}

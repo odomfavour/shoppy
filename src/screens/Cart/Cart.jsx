@@ -21,29 +21,29 @@ const Cart = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <div className="cart-shelf">
-                                        <h4>Cart: 2 items</h4>
+                                        <h4>Cart: {cart.length} items</h4>
                                         <hr />
                                         {cart.length > 0 ?
                                             <div>
                                                 {cart.map(item => (
                                                     <div key={item.id}>
                                                         <div className="row">
-                                                            <div className="col-md-2 col-4">
+                                                            <div className="col-lg-3 col-md-4 col-12 my-3">
                                                                 <img src={item.image} alt="" className='img-fluid' />
                                                             </div>
-                                                            <div className="col-md-7 col-8">
+                                                            <div className="col-md-8 col-12 my-3">
                                                                 <div className="row">
-                                                                    <div className="col-md-8">
+                                                                    <div className="col-md-10 col-12">
                                                                         <h6>{item.title}</h6>
-                                                                        <p>Something</p>
+                                                                        <p>{item.description}</p>
                                                                     </div>
-                                                                    <div className="col-md-3">
+                                                                    <div className="col-md-2 col-12">
                                                                         <p>N {item.price}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="d-flex justify-content-between align-items-center base-control">
+                                                        <div className="d-flex justify-content-between align-items-center base-control mt-3">
                                                             <button className='btn btn-primary' onClick={() => remove(item.id)}>
                                                                 <FaTrash /> <span>Remove</span>
                                                             </button>
